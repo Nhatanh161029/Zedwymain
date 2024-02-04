@@ -112,7 +112,7 @@ _G.SwordSettings = { -- ??????????
     ['TwinHooks'] = false,
     ['HallowScryte'] = false,
     ['TrueTripleKatana'] = false,
-    ['CursedDualKatana'] = true
+    ['CursedDualKatana'] = false
 }
 _G.GunSettings = { -- ??????????
     ['Kabucha'] = false,
