@@ -1,3 +1,24 @@
+repeat task.wait(5) until game:IsLoaded(3)
+repeat task.wait() until game.Players
+repeat task.wait() until game.Players.LocalPlayer
+repeat task.wait() until game.Players.LocalPlayer:FindFirstChild("PlayerGui")
+repeat task.wait() until game.Players.LocalPlayer.PlayerGui:FindFirstChild("Main");
+UserSettings():GetService('UserGameSettings').MasterVolume = 0;
+settings().Rendering.QualityLevel = 1;
+game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,false)
+game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList,false)
+game:GetService("Lighting").GlobalShadows = false
+for key, object in pairs(workspace:GetDescendants()) do
+    if object:IsA("Part") or object:IsA("UnionOperation") or object:IsA("MeshPart") then
+        object.Material = Enum.Material.SmoothPlastic
+    elseif  (object:IsA("Texture") or object:IsA("Explosion") or object:IsA("ColorCorrectionEffect") or 
+                object:IsA("Atmosphere") or object:IsA("SunRaysEffect") or object:IsA("BlurEffect") or 
+                object:IsA("RainyStone") or object:IsA("Weather")  or object:IsA("BloomEffect")
+                or object:IsA("Lighting") or object:IsA("FogEnd") or object:IsA("DepthOfFieldEffect")) then
+        object:Destroy()
+    end
+end
+repeat task.wait() until game:IsLoaded()
 repeat task.wait() until game.Players
 repeat task.wait() until game.Players.LocalPlayer
 repeat task.wait() until game.Players.LocalPlayer:FindFirstChild("PlayerGui")
@@ -5,36 +26,35 @@ repeat task.wait() until game.Players.LocalPlayer.PlayerGui:FindFirstChild("Main
 _G.Team = "Pirate" -- Marine / Pirate
 _G.KAITUN_SCRIPT = true
 _G.LogsDes = {
-    ["Enabled"] = false, -- เปิดการใช้งาน
-    ["SendAlias"] = false, -- เปิดการส่ง Alias
-    ["SendDescription"] = false, -- เปิดการส่ง Des
-    ["DelaySend"] = 5 -- วินาที
+    ["Enabled"] = false, -- ?????????????
+    ["SendAlias"] = false, -- ?????????? Alias
+    ["SendDescription"] = false, -- ?????????? Des
+    ["DelaySend"] = 5 -- ??????
 }
 _G.WebHook = {
-    ["Enabled"] = false, -- เปิดการใช้งาน
-    ["Url"] = "", -- ลิ้งค์เว็บฮุก
-    ["Delay"] = 60 -- วินาที
+    ["Enabled"] = false, -- ?????????????
+    ["Url"] = "", -- ?????????????
+    ["Delay"] = 60 -- ??????
 }
 _G.MainSettings = {
-        ["EnabledHOP"] = false, -- เปิด HOP ( มันไม่มีอยู่ละใส่มาเท่ๆ )
-        ['FPSBOOST'] = false, -- ภาพกาก
-        ["FPSLOCKAMOUNT"] = 60, -- จำนวน FPS
-        ['WhiteScreen'] = false, -- จอขาว
-        ['CloseUI'] = true, -- ปิด Ui
-        ["NotifycationExPRemove"] = true, -- ลบ ExP ที่เด้งตอนฆ่ามอน
-        ['AFKCheck'] = 60, -- ถ้ายืนนิ่งเกินวิที่ตั้งมันจะรีเกม
-        ["LockFragments"] = 12000, -- ล็อคเงินม่วง
-        ["LockFruitsRaid"] = { -- ล็อคผลที่ไม่เอาไปลงดัน
-            [1] = "Kitsune-Kitsune",
-            [2] = "Dragon-Dragon",
-	    [3] = "Dough-Dough" 
+        ["EnabledHOP"] = false, -- ???? HOP ( ??????????????????????? )
+        ['FPSBOOST'] = false, -- ??????
+        ["FPSLOCKAMOUNT"] = 60, -- ????? FPS
+        ['WhiteScreen'] = true, -- ?????
+        ['CloseUI'] = true, -- ??? Ui
+        ["NotifycationExPRemove"] = true, -- ?? ExP ????????????????
+        ['AFKCheck'] = 150, -- ?????????????????????????????????
+        ["LockFragments"] = 12000, -- ????????????
+        ["LockFruitsRaid"] = { -- ??????????????????????
+            [1] = "Leopard-Leopard",
+            [2] = "Kitsune-Kitsune"
         }
     }
-_G.Fruits_Settings = { -- ตั้งค่าผล
-    ['Main_Fruits'] = {''}, -- ผลหลัก ถ้ายังไม่ใช่ค่าที่ตั้งมันจะกินจนกว่าจะใช่หรือซื้อ
-    ['Select_Fruits'] = {""} -- กินหรือซื้อตอนไม่มีผล
+_G.Fruits_Settings = { -- ?????????
+    ['Main_Fruits'] = {''}, -- ?????? ?????????????????????????????????????????????????
+    ['Select_Fruits'] = {""} -- ?????????????????????
 }
-_G.Quests_Settings = { -- ตั้งค่าเควสหลักๆ
+_G.Quests_Settings = { -- ????????????????
     ['Rainbow_Haki'] = false,
     ["MusketeerHat"] = false,
     ["PullLever"] = false,
@@ -43,7 +63,7 @@ _G.Quests_Settings = { -- ตั้งค่าเควสหลักๆ
         ['UseFruits'] = false
     }        
 }
-_G.Races_Settings = { -- ตั้งค่าเผ่า
+_G.Races_Settings = { -- ???????????
     ['Race'] = {
         ['EnabledEvo'] = false,
         ["v2"] = false,
@@ -58,7 +78,7 @@ _G.Races_Settings = { -- ตั้งค่าเผ่า
         }
     }
 }
-_G.Settings_Melee = { -- หมัดที่จะทำ
+_G.Settings_Melee = { -- ???????????
     ['Superhuman'] = true,
     ['DeathStep'] = true,
     ['SharkmanKarate'] = true,
@@ -71,34 +91,35 @@ _G.FarmMastery_Settings = {
     ['Sword'] = false,
     ['DevilFruits'] = false,
     ['Select_Swords'] = {
-        ["AutoSettings"] = false, -- ถ้าเปิดอันนี้มันจะเลือกดาบให้เองหรือฟาร์มทุกดาบนั่นเอง
-        ["ManualSettings"] = { -- ถ้าปรับ AutoSettings เป็น false มันจะฟาร์มดาบที่เลือกตรงนี้ ตัวอย่างข้างล่าง
-            "",
-            ""
+        ["AutoSettings"] = false, -- ??????????????????????????????????????????????????????
+        ["ManualSettings"] = { -- ??????? AutoSettings ???? false ??????????????????????????? ????????????????
+            "Saber",
+            "Buddy Sword"
         }
     }
 }
-_G.SwordSettings = { -- ดาบที่จะทำ
+_G.SwordSettings = { -- ??????????
     ['Saber'] = false,
     ["Pole"] = false,
     ['MidnightBlade'] = false,
     ['Shisui'] = false,
     ['Saddi'] = false,
     ['Wando'] = false,
-    ['Yama'] = false,
+    ['Yama'] = true,
     ['Rengoku'] = false,
     ['Canvander'] = false,
     ['BuddySword'] = false,
     ['TwinHooks'] = false,
     ['HallowScryte'] = false,
     ['TrueTripleKatana'] = false,
-    ['CursedDualKatana'] = false
+    ['CursedDualKatana'] = true
 }
-_G.GunSettings = { -- ปืนที่จะทำ
+_G.GunSettings = { -- ??????????
     ['Kabucha'] = false,
     ['SerpentBow'] = false,
     ['SoulGuitar'] = false
 }
+-- Script Here !!!
 getgenv().Key = "MARU-9UTZV-5WBN1-HQBO-PYXUK-AKCU"
 getgenv().id = "1094789671730561054"
 getgenv().Script_Mode = "Kaitun_Script"
