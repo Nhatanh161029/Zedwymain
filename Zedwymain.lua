@@ -1,126 +1,93 @@
-repeat task.wait(5) until game:IsLoaded(3)
-repeat task.wait() until game.Players
-repeat task.wait() until game.Players.LocalPlayer
-repeat task.wait() until game.Players.LocalPlayer:FindFirstChild("PlayerGui")
-repeat task.wait() until game.Players.LocalPlayer.PlayerGui:FindFirstChild("Main");
-UserSettings():GetService('UserGameSettings').MasterVolume = 0;
-settings().Rendering.QualityLevel = 1;
-game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,false)
-game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList,false)
-game:GetService("Lighting").GlobalShadows = false
-for key, object in pairs(workspace:GetDescendants()) do
-    if object:IsA("Part") or object:IsA("UnionOperation") or object:IsA("MeshPart") then
-        object.Material = Enum.Material.SmoothPlastic
-    elseif  (object:IsA("Texture") or object:IsA("Explosion") or object:IsA("ColorCorrectionEffect") or 
-                object:IsA("Atmosphere") or object:IsA("SunRaysEffect") or object:IsA("BlurEffect") or 
-                object:IsA("RainyStone") or object:IsA("Weather")  or object:IsA("BloomEffect")
-                or object:IsA("Lighting") or object:IsA("FogEnd") or object:IsA("DepthOfFieldEffect")) then
-        object:Destroy()
-    end
-end
-repeat task.wait() until game:IsLoaded()
-repeat task.wait() until game.Players
-repeat task.wait() until game.Players.LocalPlayer
-repeat task.wait() until game.Players.LocalPlayer:FindFirstChild("PlayerGui")
-repeat task.wait() until game.Players.LocalPlayer.PlayerGui:FindFirstChild("Main");
-_G.Team = "Pirate" -- Marine / Pirate
-_G.KAITUN_SCRIPT = true
-_G.LogsDes = {
-    ["Enabled"] = false, -- ?????????????
-    ["SendAlias"] = false, -- ?????????? Alias
-    ["SendDescription"] = false, -- ?????????? Des
-    ["DelaySend"] = 5 -- ??????
+_G.Ui_Hide = false
+_G.KaitunConfig = {
+    ["Start Farm"] = true,
+    -- all melee is already do with it self
+    -- auto activate list ( Auto Do List )
+    --[[ //auto activate list//
+        GodHuman, all melee
+        get god human material
+        random fruit , store fruit
+        smart code redeem
+
+        / sea 1
+        auto go sea 2
+        skip farm level
+        saber
+        kill Greybeard (bisento v2)
+
+        / sea 2
+        auto go sea 3
+        kill darkbeard
+        race v2
+        bartilo
+
+        / sea 3
+        kill soul reaper,
+        kill dough king,
+        kill cake prince
+        kill rip indra
+        kill Beautiful Pirate
+
+        dough awaking
+        elite hunter
+
+        
+
+    ]]
+    ["Auto Fruit"] = true, -- tween to fruit
+
+    ["RedeemCode Level"] = 2,
+
+    ["White Sreen"] = true,
+
+    ["LimitFragment"] = 100000,
+
+    -- sea 1
+    ["PlayerHunter"] = true, -- will do skip lvl too
+    ["Player Hunter Hop"] = false,
+
+    -- sea 2
+    ["Auto Factory"] = true,
+    ["Rengoku"] = true,
+    ["Sea 3 Hop"] = false, -- hop to find fruit
+    ["Race v3"] = true,
+    
+    -- sea 3
+    ["CDK"] = true,
+    ["Tushita"] = true,
+    ["Yama"] = true,
+    ["Soul Guitar"] = true,
+
+    -- Add On
+    ["Farm When Lvl Max"] = "Katakuri", -- Bone , Katakuri , Coco
+    ["Race Lock"] = "notlock", -- Human , Mink , Fishman , put other mean not lock
+    ["FPS Cap"] = 15,
+
+    ["Buy Haki Color"] = true, -- will buy only Snow White,Pure Red,Winter Sky
+    ["Auto Legendary Sword"] = true,
+    ["Auto TTK"] = true,
+
+    -- Sword
+    ["Mastery Sword"] = true, -- will farm mastery
+    ["Select Rarity"] = {"Mythical","Legendary"}, -- Common , Uncommon,Rare,Legendary,Mythical
+
+    -- Fruit
+    ["Select Main Devil Fruit Sniper"] = {"Dragon-Dragon","Spirit-Spirit","Venom-Venom","Dough-Dough"}, -- if have will eat
+    ["Select Sub Devil Fruit Sinper"] = {"Ice-Ice","Sand-Sand","Dark-Dark","Quake-Quake","Light-Light"}, -- will eat if not have main fruit
+    ["Allow Eat Fruit In Inventory"] = true,
+    ["Start Sniper"] = true,
+    
+    -- Fruit2
+    ["Safe Fruit"] = {"Dragon-Dragon","Spirit-Spirit","Venom-Venom","Dough-Dough"}, -- will not use this fruit to raids or anyting
+
+    -- Webhook
+    ["Link Webhook"] = "",
+    ["Start Webhook"] = false,
+    ["Webhook Mode"] = "Send Every .. min", -- "Send Every .. min","Send On Level Max","Send On Level Max And Every .. min"
+    ["Webhook Minute"] = 10, -- mean 10 Minute
+    ["tag user"] = false,
+    ["Send Test Webhook"] = false,
 }
-_G.WebHook = {
-    ["Enabled"] = false, -- ?????????????
-    ["Url"] = "", -- ?????????????
-    ["Delay"] = 60 -- ??????
-}
-_G.MainSettings = {
-        ["EnabledHOP"] = false, -- ???? HOP ( ??????????????????????? )
-        ['FPSBOOST'] = false, -- ??????
-        ["FPSLOCKAMOUNT"] = 60, -- ????? FPS
-        ['WhiteScreen'] = false, -- ?????
-        ['CloseUI'] = true, -- ??? Ui
-        ["NotifycationExPRemove"] = true, -- ?? ExP ????????????????
-        ['AFKCheck'] = 150, -- ?????????????????????????????????
-        ["LockFragments"] = 12000, -- ????????????
-        ["LockFruitsRaid"] = { -- ??????????????????????
-            [1] = "Leopard-Leopard",
-            [2] = "Kitsune-Kitsune"
-        }
-    }
-_G.Fruits_Settings = { -- ?????????
-    ['Main_Fruits'] = {''}, -- ?????? ?????????????????????????????????????????????????
-    ['Select_Fruits'] = {""} -- ?????????????????????
-}
-_G.Quests_Settings = { -- ????????????????
-    ['Rainbow_Haki'] = false,
-    ["MusketeerHat"] = false,
-    ["PullLever"] = false,
-    ['DoughQuests_Mirror'] = {
-        ['Enabled'] = false,
-        ['UseFruits'] = false
-    }        
-}
-_G.Races_Settings = { -- ???????????
-    ['Race'] = {
-        ['EnabledEvo'] = false,
-        ["v2"] = false,
-        ["v3"] = false,
-        ["Races_Lock"] = {
-            ["Races"] = { -- Select Races U want
-                ["Mink"] = false,
-                ["Human"] = false,
-                ["Fishman"] = false
-            },
-            ["RerollsWhenFragments"] = 20000 -- Random Races When Your Fragments is >= Settings
-        }
-    }
-}
-_G.Settings_Melee = { -- ???????????
-    ['Superhuman'] = true,
-    ['DeathStep'] = true,
-    ['SharkmanKarate'] = true,
-    ['ElectricClaw'] = true,
-    ['DragonTalon'] = true,
-    ['Godhuman'] = true
-}
-_G.FarmMastery_Settings = {
-    ['Melee'] = true,
-    ['Sword'] = false,
-    ['DevilFruits'] = false,
-    ['Select_Swords'] = {
-        ["AutoSettings"] = false, -- ??????????????????????????????????????????????????????
-        ["ManualSettings"] = { -- ??????? AutoSettings ???? false ??????????????????????????? ????????????????
-            "Saber",
-            "Buddy Sword"
-        }
-    }
-}
-_G.SwordSettings = { -- ??????????
-    ['Saber'] = false,
-    ["Pole"] = false,
-    ['MidnightBlade'] = false,
-    ['Shisui'] = false,
-    ['Saddi'] = false,
-    ['Wando'] = false,
-    ['Yama'] = true,
-    ['Rengoku'] = false,
-    ['Canvander'] = false,
-    ['BuddySword'] = false,
-    ['TwinHooks'] = false,
-    ['HallowScryte'] = false,
-    ['TrueTripleKatana'] = false,
-    ['CursedDualKatana'] = false
-}
-_G.GunSettings = { -- ??????????
-    ['Kabucha'] = false,
-    ['SerpentBow'] = false,
-    ['SoulGuitar'] = false
-}
--- Script Here !!!
-getgenv().Key = "MARU-9UTZV-5WBN1-HQBO-PYXUK-AKCU"
-getgenv().id = "1094789671730561054"
-getgenv().Script_Mode = "Kaitun_Script"
-loadstring(game:HttpGet("https://raw.githubusercontent.com/xshiba/MaruBitkub/main/Mobile.lua"))()
+_G.Key = "8MLX0-S7A1H-M35ER"
+_G.DiscordId = "1016879943747112970"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Natsuhanaki/Royx_PC/main/loader.lua"))();
