@@ -56,7 +56,7 @@ function CheckQuest()
 local MyLevel = game:GetService("Players").LocalPlayer.Data.Level.Value
     if World1 then
  if MyLevel == 1 or MyLevel <= 9 then -- Bandit [Lv. 5]
-            Mon = "Bandit [Lv. 5]"
+            Mon = "Bandit"
             NameMon = "Bandit"
             CFrameMon = CFrame.new(1194, 53, 1620, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
@@ -65,7 +65,7 @@ local MyLevel = game:GetService("Players").LocalPlayer.Data.Level.Value
             CFrameQuest = CFrame.new(1061, 17, 1545, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
         elseif MyLevel == 10 or MyLevel <= 14 then -- Monkey [Lv. 14]
-            Mon = "Monkey [Lv. 14]"
+            Mon = "Monkey"
             NameMon = "Monkey"
             CFrameMon = CFrame.new(-1377, 62, 142, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
@@ -74,7 +74,7 @@ local MyLevel = game:GetService("Players").LocalPlayer.Data.Level.Value
             CFrameQuest = CFrame.new(-1602, 35, 154, 1, 0, 0, 0, 1, 0, 0, 0, 1)
                 
         elseif MyLevel == 15 or MyLevel <= 29 then -- Gorilla [Lv. 20]
-            Mon = "Gorilla [Lv. 20]"
+            Mon = "Gorilla"
             NameMon = "Gorilla"
             CFrameMon = CFrame.new(-1237, 62, -486, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
