@@ -30,16 +30,7 @@ Tele:AddButton(
         end
     }
 )
-Tab:AddToggle(
-    {
-        Name = "Auto Map",
-        Default = false,
-        Callback = function(m)
-            Config.Automap = m
-            spawn(Automap)
-        end
-    }
-)
+
 
 Tab:AddToggle(
     {
