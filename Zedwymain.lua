@@ -43,67 +43,7 @@ Tab:AddToggle(
     }
 )
 
-Tab:AddToggle(
-    {
-        Name = "Auto Mail (Huge, Shard, Gems)",
-        Default = false,
-        Callback = function(v)
-            Config.autoMail = v
-            spawn(autoMail)
-        end
-    }
-)
 
-Tab:AddTextbox(
-    {
-        Name = "Username",
-        Default = "",
-        TextDisappear = false,
-        Callback = function(user)
-            username = user
-        end
-    }
-)
-
-Tab:AddTextbox(
-    {
-        Name = "Shard Amount",
-        Default = "",
-        TextDisappear = false,
-        Callback = function(shards)
-            shardAmount = tonumber(shards)
-        end
-    }
-)
-
-Tab:AddTextbox(
-    {
-        Name = "Gem Amount",
-        Default = "",
-        TextDisappear = false,
-        Callback = function(gems)
-            gemAmount = tonumber(gems)
-        end
-    }
-)
-
-Tab:AddButton(
-    {
-        Name = "Disable 3D Render",
-        Callback = function()
-            game:GetService("RunService"):Set3dRenderingEnabled(false)
-        end
-    }
-)
-
-Tab:AddButton(
-    {
-        Name = "Enable 3D Render",
-        Callback = function()
-            game:GetService("RunService"):Set3dRenderingEnabled(true)
-        end
-    }
-)
 
 OrionLib:Init()
 
