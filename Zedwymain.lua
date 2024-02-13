@@ -1,42 +1,4 @@
-repeat task.wait() until game:IsLoaded()
 
-while not game:GetService("Players").LocalPlayer.PlayerGui.MainLeft.Enabled do
-    task.wait(1)
-end
-
-getgenv().Config = {}
-
-local Lib = require(game.ReplicatedStorage.Library.Client)
-local Library = require(game:GetService("ReplicatedStorage").Library)
-
-local Network = Library.Network
-local Balancing = Library.Balancing
-local Zones = Library.Directory.Zones
-
-function CollectPresent(Id)
-    return Lib.Network.Invoke("Hidden Presents: Found", Id)
-end
-
-function Round6(number)
-    local roundedNumber = math.floor(number * 10^6 + 0.5) / 10^6
-    return string.format("%.6f", roundedNumber)
-end
-
-function GetPresents()
-    for i, Present in pairs(game.Workspace.__THINGS:WaitForChild("HiddenPresents"):GetChildren()) do
-        if Present.Name == "HiddenPresent" then
-            local Id = "ID_"..tostring(Round6(Present.CFrame.x)).."_"..tostring(Round6(Present.CFrame.y)).."_"..tostring(Round6(Present.CFrame.z))
-            local x,y,z = CollectPresent(Id)
-            Present:Destroy()
-        end
-    end
-end
-
-spawn(function()
-    while task.wait(1) do
-        GetPresents()
-    end    
-end)
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "Roleck Ps99 Hub", HidePremium = false, SaveConfig = false, ConfigFolder = "OrionTest", IntroEnabled = false})
